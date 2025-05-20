@@ -149,8 +149,8 @@ class YouTube:
             link = link.split("&")[0]
         cmd = [
             "yt-dlp",
-            f"--cookies",
-            cookies(),
+            "--cookies-from-browser",
+            "chrome",
             "-g",
             "-f",
             "best[height<=?720][width<=?1280]",
@@ -222,7 +222,7 @@ class YouTube:
             "noplaylist": True,
             "quiet": True,
             "extract_flat": "in_playlist",
-            "cookiefile": f"{cookies()}",
+            "cookiesfrombrowser": ("chrome",),
         }
         with YoutubeDL(options) as ydl:
             info_dict = ydl.extract_info(f"ytsearch: {q}", download=False)
@@ -326,7 +326,7 @@ class YouTube:
                 "nocheckcertificate": True,
                 "quiet": True,
                 "no_warnings": True,
-                "cookiefile": f"{cookies()}",
+                "cookiesfrombrowser": ("chrome",),
                 "prefer_ffmpeg": True,
             }
 
@@ -349,7 +349,7 @@ class YouTube:
                 "quiet": True,
                 "no_warnings": True,
                 "prefer_ffmpeg": True,
-                "cookiefile": f"{cookies()}",
+                "cookiesfrombrowser": ("chrome",),
             }
 
             with YoutubeDL(ydl_optssx) as x:
@@ -374,7 +374,7 @@ class YouTube:
                 "no_warnings": True,
                 "prefer_ffmpeg": True,
                 "merge_output_format": "mp4",
-                "cookiefile": f"{cookies()}",
+                "cookiesfrombrowser": ("chrome",),
             }
 
             with YoutubeDL(ydl_optssx) as x:
@@ -401,7 +401,7 @@ class YouTube:
                         "preferredquality": "192",
                     }
                 ],
-                "cookiefile": f"{cookies()}",
+                "cookiesfrombrowser": ("chrome",),
             }
 
             with YoutubeDL(ydl_optssx) as x:
@@ -422,8 +422,8 @@ class YouTube:
             else:
                 command = [
                     "yt-dlp",
-                    f"--cookies",
-                    cookies(),
+                    "--cookies-from-browser",
+                    "chrome",
                     "-g",
                     "-f",
                     "best",
