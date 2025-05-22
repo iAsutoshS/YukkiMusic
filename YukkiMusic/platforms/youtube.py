@@ -250,7 +250,7 @@ class YouTube:
 
         ytdl_opts = {
             "quiet": True,
-            "cookiefile": f"{cookies()}",
+            "cookiesfrombrowser": ("chrome",),
         }
 
         ydl = YoutubeDL(ytdl_opts)
