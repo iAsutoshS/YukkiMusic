@@ -107,10 +107,10 @@ GIT_TOKEN = getenv(
 
 # Only  Links formats are  accepted for this Var value.
 SUPPORT_CHANNEL = getenv(
-    "SUPPORT_CHANNEL", "https://t.me/TheTeamVivek"
+    "SUPPORT_CHANNEL", "https://t.me/inforezbots"
 )  # Example:- https://t.me/TheTeamVivek
 SUPPORT_GROUP = getenv(
-    "SUPPORT_GROUP", "https://t.me/TheTeamVk"
+    "SUPPORT_GROUP", "https://t.me/rezzbotsupport"
 )  # Example:- https://t.me/TheTeamVk
 
 
@@ -139,9 +139,9 @@ GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com/TheTeamVivek/YukkiMusic"
 
 
 # Spotify Client.. Get it from https://developer.spotify.com/dashboard
-SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", "19609edb1b9f4ed7be0c8c1342039362")
+SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", "2b62dfdb08fd4693a3a53b6cbafd7bfb")
 SPOTIFY_CLIENT_SECRET = getenv(
-    "SPOTIFY_CLIENT_SECRET", "409e31d3ddd64af08cfcc3b0f064fcbe"
+    "SPOTIFY_CLIENT_SECRET", "2fbef152887a45ef9e96b52e00ef973e"
 )
 
 
