@@ -171,7 +171,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(
 
 # If you want your bot to setup the commands automatically in the bot's menu set it to true.
 # Refer to https://i.postimg.cc/Bbg3LQTG/image.png
-SET_CMDS = is_true(getenv("SET_CMDS", "False"))
+SET_CMDS = is_true(getenv("SET_CMDS", "True"))
 
 
 # You'll need a Pyrogram String Session for these vars. See config/README.md for more information.
