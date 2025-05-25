@@ -44,7 +44,7 @@ MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 # you can skip if you are adding cookies
 # manually in config/cookies dir
 
-COOKIE_LINK = parse_list(getenv("COOKIE_LINK", "https://batbin.me/unhale"))
+COOKIE_LINK = parse_list(getenv("COOKIE_LINK", ""))
 
 CLEANMODE_DELETE_MINS = int(
     getenv("CLEANMODE_MINS", "5")
