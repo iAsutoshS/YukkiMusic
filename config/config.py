@@ -94,7 +94,7 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 # For customized or modified Repository
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "ha cari apa ?",
+    "https://files.catbox.moe/p3y3pp.mp4",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 
