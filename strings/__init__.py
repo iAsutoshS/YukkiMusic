@@ -37,7 +37,6 @@ def command(
 ):
     if not isinstance(prefixes, list):
         prefixes = [prefixes]
-    prefixes.append("") # Command can work with without prefix
 
     if not isinstance(commands, list):
         commands = [commands]
