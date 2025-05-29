@@ -8,11 +8,15 @@
 # All rights reserved.
 #
 
+import logging
 from YukkiMusic.platforms import saavn
 
+logger = logging.getLogger(__name__)
 
 async def download(title, video):
-    raise ValueError("Failed to download song from youtube")
-    video = None
-    path, details = await saavn.download(title)
-    return path, details, video
+    try:
+        path, details = await saavn.download(title)
+        return path, details, video
+    except Exception as e:
+        logger.error("Fallback download failed", exc_info=True)
+        raise ValueError("Failed to download song from youtube") from e
