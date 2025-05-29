@@ -36,3 +36,12 @@ logging.getLogger("pymongo").setLevel(logging.ERROR)
 
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
+
+def handle_exception(exc_type, exc_value, exc_traceback):
+    if issubclass(exc_type, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+
+    LOGGER(__name__).error("Uncaught exception\n", exc_info=(exc_type, exc_value, exc_traceback))
+
+sys.excepthook = handle_exception
