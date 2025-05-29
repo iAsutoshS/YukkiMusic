@@ -30,6 +30,7 @@ logging.getLogger("ntgcalls").setLevel(logging.ERROR)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("pytgcalls").setLevel(logging.ERROR)
 logging.getLogger("pymongo").setLevel(logging.ERROR)
+logging.getLogger("yt_dlp").setLevel(logging.ERROR)
 
 # Logger getter
 def LOGGER(name: str) -> logging.Logger:
