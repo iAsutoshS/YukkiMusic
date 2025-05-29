@@ -10,31 +10,30 @@
 import logging
 import sys
 import os
+import io
 from logging.handlers import RotatingFileHandler
-from config import LOG_FILE_NAME  # Make sure this is like "logs/logs.txt" or "logs.txt"
+from config import LOG_FILE_NAME  # Example: "logs/logs.txt"
 
 # Ensure the log directory exists
 log_dir = os.path.dirname(LOG_FILE_NAME)
 if log_dir and not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
-# Log format and level
+# Logging format
 LOG_FORMAT = "[%(asctime)s - %(levelname)s] - %(name)s - %(message)s"
 DATE_FORMAT = "%d-%b-%y %H:%M:%S"
-
-# Create formatter
 formatter = logging.Formatter(LOG_FORMAT, datefmt=DATE_FORMAT)
 
-# Set up root logger
+# Get root logger
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)  # Capture all levels
+logger.setLevel(logging.DEBUG)
 
-# Clear existing handlers (important in some reloadable environments)
+# Clear previous handlers (to avoid duplication)
 if logger.hasHandlers():
     logger.handlers.clear()
 
 # File handler
-file_handler = RotatingFileHandler(LOG_FILE_NAME, maxBytes=5000000, backupCount=5, encoding='utf-8')
+file_handler = RotatingFileHandler(LOG_FILE_NAME, maxBytes=5_000_000, backupCount=5, encoding='utf-8')
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
@@ -43,7 +42,7 @@ console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
-# Silence overly verbose loggers (optional)
+# Silence noisy libraries (optional)
 for noisy in ["httpx", "pyrogram", "pymongo", "ntgcalls", "pytgcalls"]:
     logging.getLogger(noisy).setLevel(logging.ERROR)
 
@@ -56,8 +55,25 @@ def handle_exception(exc_type, exc_value, exc_traceback):
     if issubclass(exc_type, KeyboardInterrupt):
         sys.__excepthook__(exc_type, exc_value, exc_traceback)
         return
-    logger = LOGGER("UncaughtException")
-    logger.error("Uncaught exception occurred:", exc_info=(exc_type, exc_value, exc_traceback))
+    LOGGER("UncaughtException").error("Uncaught exception occurred", exc_info=(exc_type, exc_value, exc_traceback))
 
 sys.excepthook = handle_exception
+
+# Redirect stderr (like yt_dlp errors) to log file
+class StreamToLogger(io.StringIO):
+    def __init__(self, logger, level):
+        super().__init__()
+        self.logger = logger
+        self.level = level
+
+    def write(self, buf):
+        for line in buf.rstrip().splitlines():
+            self.logger.log(self.level, line.rstrip())
+
+    def flush(self):
+        pass
+
+# Redirect standard error to logging
+sys.stderr = StreamToLogger(LOGGER("STDERR"), logging.ERROR)
+
 
