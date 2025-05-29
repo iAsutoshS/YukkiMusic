@@ -97,7 +97,6 @@ async def init():
     await userbot.stop()
     await Yukki.stop()
 
-raise ValueError("This should be logged to file and console")
 
 def main():
     loop.run_until_complete(init())
@@ -106,3 +105,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+raise ValueError("This should be logged to file and console")
