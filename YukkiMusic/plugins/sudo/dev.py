@@ -51,7 +51,7 @@ async def executor(client: app, message: Message):
     if len(message.command) < 2:
         return await message.reply(text="<b>Give me something to exceute</b>")
     try:
-        cmd = message.text.split(" ", maxsplit=1)[1]
+        cmd = message.text.markdown.split(" ", maxsplit=1)[1]
     except IndexError:
         return await message.delete()
     t1 = time()
@@ -152,7 +152,7 @@ async def shellrunner(_, message: Message):
     if len(message.command) < 2:
         return await message.reply("<b>Give some commands like:</b>\n/sh git pull")
 
-    text = message.text.split(None, 1)[1]
+    text = message.text.markdown.split(None, 1)[1]
     output = ""
 
     async def run_command(command):
