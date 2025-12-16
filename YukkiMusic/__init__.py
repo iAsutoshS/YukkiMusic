@@ -8,9 +8,7 @@
 # All rights reserved.
 import asyncio as _asyncio
 
-import uvloop as _uvloop
-
-_asyncio.set_event_loop_policy(_uvloop.EventLoopPolicy())  # noqa
+  # noqa
 
 from YukkiMusic.core.bot import YukkiBot
 from YukkiMusic.core.dir import dirr
