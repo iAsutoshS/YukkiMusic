@@ -320,7 +320,7 @@ class YouTube:
                 "geo_bypass": True,
                 "noplaylist": True,
                 "nocheckcertificate": True,
-                "quiet": True,
+                "quiet": False,
                 "no_warnings": True,
                 "prefer_ffmpeg": True,
                 "concurrent_fragment_downloads": 16,
