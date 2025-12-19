@@ -315,7 +315,7 @@ class YouTube:
         @asyncify
         def audio_dl():
             ydl_optssx = {
-                "format": "bestaudio[ext=opus]/bestaudio/best",
+                "format": "bestaudio[acodec=opus]/bestaudio",
                 "outtmpl": "downloads/%(id)s.%(ext)s",
                 "geo_bypass": True,
                 "noplaylist": True,
@@ -323,6 +323,7 @@ class YouTube:
                 "quiet": True,
                 "no_warnings": True,
                 "prefer_ffmpeg": True,
+                "concurrent_fragment_downloads": 16,
             }
 
             with YoutubeDL(ydl_optssx) as x:
@@ -344,6 +345,7 @@ class YouTube:
                 "quiet": True,
                 "no_warnings": True,
                 "prefer_ffmpeg": True,
+                "concurrent_fragment_downloads": 16,
             }
 
             with YoutubeDL(ydl_optssx) as x:
