@@ -283,7 +283,7 @@ async def song_download_cb(client, query, _):
 
     yturl = f"https://www.youtube.com/watch?v={vidid}"
 
-    with yt_dlp.YoutubeDL({"quiet": True, "cookiefile": f"{cookies()}"}) as ytdl:
+    with yt_dlp.YoutubeDL({"quiet": True, "cookiesfrombrowser": ("firefox",),}) as ytdl:
         x = ytdl.extract_info(yturl, download=False)
 
     title = (x["title"]).title()

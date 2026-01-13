@@ -105,3 +105,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+raise ValueError("This should be logged to file and console")
