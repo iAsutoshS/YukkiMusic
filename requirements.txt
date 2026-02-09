@@ -34,4 +34,3 @@ urllib3==2.4.0
 uvloop==0.22.1
 werkzeug==3.1.3
 yarl==1.20.1
-yukkimusic==1.5.0
