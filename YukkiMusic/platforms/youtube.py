@@ -319,16 +319,22 @@ class YouTube:
         @asyncify
         def audio_dl():
             ydl_optssx = {
-                "format": "bestaudio[ext=m4a]/bestaudio/best",
-                "outtmpl": "downloads/%(id)s.%(ext)s",
-                "geo_bypass": True,
-                "noplaylist": True,
-                "nocheckcertificate": True,
-                "quiet": True,
-                "no_warnings": True,
-                "cookiesfrombrowser": ("firefox",),
-                "prefer_ffmpeg": True,
-            }
+            "format": "bestaudio/best",
+            "outtmpl": "downloads/%(id)s.%(ext)s",
+            "geo_bypass": True,
+            "noplaylist": True,
+            "nocheckcertificate": True,
+            "quiet": True,
+            "no_warnings": True,
+            "cookiesfrombrowser": ("firefox",),
+            "prefer_ffmpeg": True,
+            "postprocessors": [{
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "m4a",
+                "preferredquality": "192",
+            }],
+        }
+
 
             with YoutubeDL(ydl_optssx) as x:
                 info = x.extract_info(link, False)
